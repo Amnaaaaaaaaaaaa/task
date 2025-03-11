@@ -1,0 +1,12 @@
+{
+  "name": "event-planner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node testScript.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
