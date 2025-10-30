@@ -26,14 +26,19 @@ pipeline {
                 bat 'npm test'
             }
         }
-
         stage('Build') {
-            steps {
-                echo 'Building project...'
-                bat 'npm run build || echo No build script found'
+    steps {
+        echo 'Building project...'
+        script {
+            def result = bat(returnStatus: true, script: 'npm run build')
+            if (result != 0) {
+                echo "⚠️ No build script found, skipping build."
             }
         }
+    }
+}
 
+   
         stage('Archive Artifacts') {
             steps {
                 archiveArtifacts artifacts: '**/*.js', fingerprint: true
