@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node testScript.js"
+    "test": "node testScript.js",
+    "build": "echo Building Node.js project..."
+
   },
   "keywords": [],
   "author": "",
