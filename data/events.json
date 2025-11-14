@@ -7,14 +7,5 @@
     "time": "10:00 AM",
     "category": "Meetings",
     "userId": 1
-  },
-  {
-    "id": 2,
-    "name": "Test Meeting 2",
-    "description": "Project discussion 2",
-    "date": "2025-03-15",
-    "time": "11:00 AM",
-    "category": "Meetings1",
-    "userId": 1
   }
 ]
