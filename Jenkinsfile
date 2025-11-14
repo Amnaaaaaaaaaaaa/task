@@ -4,18 +4,31 @@ pipeline {
     stages {
 
         stage('Print Build Info') {
-            steps {
-                script {
-                    echo "Build #${currentBuild.number}"
-                    echo "Timestamp: ${new Date().format('yyyy-MM-dd HH:mm:ss')}"
-                    if (currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition$SCMTriggerCause').size() > 0) {
-                        echo "Triggered by GitHub Webhook"
-                    } else {
-                        echo "Triggered manually"
-                    }
+    steps {
+        script {
+            echo "Build #${env.BUILD_NUMBER}"
+            echo "Timestamp: ${new Date()}"
+            
+            // Detect if triggered by GitHub webhook
+            def causes = currentBuild.getBuildCauses()
+            def triggeredByWebhook = false
+
+            for (cause in causes) {
+                if (cause.toString().contains("SCMTrigger") || cause.toString().contains("GitHubPushTrigger")) {
+                    triggeredByWebhook = true
+                    break
                 }
             }
+
+            if (triggeredByWebhook) {
+                echo "Triggered by GitHub Webhook"
+            } else {
+                echo "Triggered manually"
+            }
         }
+    }
+}
+
 
         stage('Checkout Code') {
             steps {
